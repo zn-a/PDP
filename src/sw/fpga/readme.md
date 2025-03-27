@@ -1,0 +1,1 @@
+The directory riscy under 'src/sw/fpga/riscy' should be copied to the fpga sd card under '/home/xilinx/jupyter_notebooks/riscy'.
