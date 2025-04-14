@@ -5,25 +5,28 @@
 Required software if running in the server:
 
 * Jupyer Notebooks
+* X2GO
+* VSCode (recommended)
 
 Required software if running locally:
 
 * Jupyer Notebooks
-* Vivado 2024.2: Free version is enough for the FPGA we target.
+* [Vivado 2024.2](https://www.xilinx.com/support/download.html): Free version is enough for the FPGA we target.
 * [LLVM](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm): see [install llvm](#install-llvm)
 * [RISCV GCC](https://github.com/riscv-collab/riscv-gnu-toolchain): see [install gcc](#install-gcc)
+* VSCode (recommended)
 
-Guides
+Guides:
 
-* [Terms](terms)
 * [Workflow](workflow)
 * [Hardware: vivado and rtl](#hardware-vivado-project-and-rtl)
 * [Hardware: running the design on the FPGA](#hardware-running-on-the-fpga)
-* Tools installation to run the stuff locally: [gcc]() and [llvm]().
-* Working with the server [server]().
+* [Working with the server](#run-server)
+* [Guides for local tool setup](#run-locally)
+* [Resources](#resources)
 
-## Terms:
 
+Terms:
 * **Memory initialization files (.coe)**: these are just the initial contents of a memory written in a format that vivado understands.
 
 * **Out of Context (OOC) synthesis**: running synthesis of an IP or module independently from the rest of the system, it is an intermediate step to check that there isn't anything fundamentally wrong with your design or to get an initial estimation of resources/timing without having to synthesize the whole design.
@@ -56,7 +59,7 @@ The expected workflow for the project is as follows:
 
 The source code of the riscy core can be found under: `pdp-project/hardware/src/design/riscy`.
 
-The simulation testbench can be found under: `pdp-project/hardware/src/simulation/zynq_tb.sv`.
+The simulation testbench can be found at: `pdp-project/hardware/src/simulation/zynq_tb.sv`.
 
 The system being simulated and implemented on the fpga is generated out of a tcl script (`pdp-project/hardware/scripts/generate_fpga_bd.tcl`), the format is not very user friendly, so it is recommended to open the bd directly in vivado when trying to understand it.
 
@@ -135,6 +138,8 @@ Open the `base_riscy.ipynb` and you can execute the cells one by one in order, a
 
 ## Software
 
+### C code and binaries generation
+
 The source C code of the software AES implementation can be found under: `pdp-project/software/main.c`.
 
 First you will need to update the paths (RISCV_GCC and LLVM) found in the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of the riscv gcc and llvm.
@@ -149,7 +154,20 @@ make soft
 
 You can find the generated binaries under `pdp-project/software/output` and the memory initialization files under `pdp-project/software/bin_files`.
 
-You are encouraged to inspect and modify the Makefile compilation commands.
+You are encouraged to inspect and understand the Makefile compilation commands.
+
+### LLVM modifications
+
+The provided LLVM toolchain in the server is already compiled, but after any modification to the backend of llvm it is necessary to recompile the llvm toolchain.
+
+If you have only modified the RISCV backend, you don't need to recompile the whole LLVM, to save time by recompiling only the modified RISCV backed do:
+
+```
+cd /path/to/wherever/your/llvm/build/is #TBD
+cmake -G Ninja  -DLLVM_TARGETS_TO_BUILD="RISCV" -DLLVM_ENABLE_PROJECTS="clang;lld" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF "../llvm/"
+
+ninja
+```
 
 ## Run server
 
@@ -231,3 +249,10 @@ sudo apt-get install autoconf automake autotools-dev curl python3 python3-pip py
 
 make
 ```
+
+## Resources
+
+* [RISC-V Cryptography Extension](https://lists.riscv.org/g/dev-partners/attachment/43/0/riscv-crypto-spec-scalar-v0.9.3-DRAFT.pdf).
+* [Adding custom instruction to LLVM backend](https://github.com/10x-Engineers/clang-builtin-tutorial).
+* [PYNQ board setup](https://pynq.readthedocs.io/en/latest/getting_started/pynq_z1_setup.html).
+* [X2GO setup for QCE servers use](https://qce-it-infra.ewi.tudelft.nl/faq.html#how-to-setup-x2go-for-the-qce-xportal-server).
