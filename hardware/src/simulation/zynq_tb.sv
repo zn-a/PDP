@@ -42,18 +42,28 @@ module zynq_tb;
     //wire [3:0] leds;
     reg resp; 
     
-//     //------------------------------------------------------------------------
-//    // Code file open & check
-//    //------------------------------------------------------------------------   
-//    integer data_file, scan_file;
-//    logic [127:0] capture_data;
-//    initial begin
-//    data_file = $fopen("code_and_data_led_checked.coe","r");
-//    if(data_file == 0) begin
-//        $display("data_file handler was null");
-//        $finish;
-//        end
-//     end
+    //------------------------------------------------------------------------
+    // Address map:
+    //------------------------------------------------------------------------   
+
+    // 0x4000_0000 - 0x4000_7FFF: Instruction memory
+    // 0x4200_0000 - 0x4200_7FFF: Data memory
+    // - 0x4200_2000: [31:0]: End sequence
+    // - 0x4200_2004: [31:0]: Ciphertext matches expected
+    // - 0x4200_2030: [31:0]: Expected ciphertext [0]
+    // - 0x4200_2034: [31:0]: Expected ciphertext [1]
+    // - 0x4200_2038: [31:0]: Expected ciphertext [2]
+    // - 0x4200_203C: [31:0]: Expected ciphertext [3]
+    // - 0x4200_2040: [31:0]: Calculated ciphertext [0]
+    // - 0x4200_2044: [31:0]: Calculated ciphertext [1]
+    // - 0x4200_2048: [31:0]: Calculated ciphertext [2]
+    // - 0x4200_204C: [31:0]: Calculated ciphertext [3]
+    // 0x4000_8000  - 0x4000_8FFF: Reboot riscv
+    // - 0x4000_8010: [0]: Reboot riscv
+    // - 0x4000_8010: [4]: Fetch enable riscv
+    // 0x4000_9000  - 0x4000_9FFF: Register bank
+    // - 0x4000_9000: [0]: End sequence detected
+    // - 0x4000_9004: [31:0]: Number of clk cycles from fetch enable to end sequence detected
     
     initial 
     begin       
@@ -88,20 +98,6 @@ module zynq_tb;
 		#2000
 		#200
         
-        // set fetch_enable pin of the riscv to 1.
-        //@(posedge sys_clk);
-        
-        // Example of how to read the register bank:
-        /*zynq_tb.zynq_sys.riscv_i.processing_system7_0.inst.read_data(zynq_tb.base_addr_reg_bank+32'h0,4,zynq_tb.read_data[0],zynq_tb.resp);
-        $display("Read data (%0h): %0h", zynq_tb.base_addr_reg_bank+32'h0, zynq_tb.read_data[0]);
-        zynq_tb.zynq_sys.riscv_i.processing_system7_0.inst.read_data(zynq_tb.base_addr_reg_bank+32'h4,4,zynq_tb.read_data[0],zynq_tb.resp);
-        $display("Read data (%0h): %0h", zynq_tb.base_addr_reg_bank+32'h4, zynq_tb.read_data[0]);
-        zynq_tb.zynq_sys.riscv_i.processing_system7_0.inst.read_data(zynq_tb.base_addr_reg_bank+32'h8,4,zynq_tb.read_data[0],zynq_tb.resp);
-        $display("Read data (%0h): %0h", zynq_tb.base_addr_reg_bank+32'h20, zynq_tb.read_data[0]);
-        zynq_tb.zynq_sys.riscv_i.processing_system7_0.inst.read_data(zynq_tb.base_addr_reg_bank+32'h20,4,zynq_tb.read_data[0],zynq_tb.resp);
-        $display("Read data (%0h): %0h", zynq_tb.base_addr_reg_bank+32'h20, zynq_tb.read_data[0]);*/
-
-
         main_core_execution();
 
         $display ("Simulation completed");

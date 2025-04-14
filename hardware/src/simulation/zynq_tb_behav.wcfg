@@ -18,13 +18,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="8.098925001 ms"></ZoomEndTime>
-      <Cursor1Time time="0.000000000 ms"></Cursor1Time>
+      <ZoomStartTime time="247.708333 us"></ZoomStartTime>
+      <ZoomEndTime time="269.508334 us"></ZoomEndTime>
+      <Cursor1Time time="265.875000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="254"></NameColumnWidth>
-      <ValueColumnWidth column_width="249"></ValueColumnWidth>
+      <ValueColumnWidth column_width="245"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="9" />
    <wvobject fp_name="/zynq_tb/tb_ACLK" type="logic">
@@ -106,43 +106,43 @@
    <wvobject fp_name="group169" type="group">
       <obj_property name="label">data_mem</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/clka" type="logic">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/clka" type="logic">
          <obj_property name="ElementShortName">clka</obj_property>
          <obj_property name="ObjectShortName">clka</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/wea" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/wea" type="array">
          <obj_property name="ElementShortName">wea[3:0]</obj_property>
          <obj_property name="ObjectShortName">wea[3:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/addra" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/addra" type="array">
          <obj_property name="ElementShortName">addra[12:0]</obj_property>
          <obj_property name="ObjectShortName">addra[12:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/dina" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/dina" type="array">
          <obj_property name="ElementShortName">dina[31:0]</obj_property>
          <obj_property name="ObjectShortName">dina[31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/douta" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/douta" type="array">
          <obj_property name="ElementShortName">douta[31:0]</obj_property>
          <obj_property name="ObjectShortName">douta[31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/clkb" type="logic">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/clkb" type="logic">
          <obj_property name="ElementShortName">clkb</obj_property>
          <obj_property name="ObjectShortName">clkb</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/web" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/web" type="array">
          <obj_property name="ElementShortName">web[3:0]</obj_property>
          <obj_property name="ObjectShortName">web[3:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/addrb" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/addrb" type="array">
          <obj_property name="ElementShortName">addrb[12:0]</obj_property>
          <obj_property name="ObjectShortName">addrb[12:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/dinb" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/dinb" type="array">
          <obj_property name="ElementShortName">dinb[31:0]</obj_property>
          <obj_property name="ObjectShortName">dinb[31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/doutb" type="array">
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/data_mem/doutb" type="array">
          <obj_property name="ElementShortName">doutb[31:0]</obj_property>
          <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
       </wvobject>
@@ -151,6 +151,10 @@
       <obj_property name="label">core_mem_if</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/fetch_enable_i" type="logic">
+         <obj_property name="ElementShortName">fetch_enable_i</obj_property>
+         <obj_property name="ObjectShortName">fetch_enable_i</obj_property>
+      </wvobject>
       <wvobject fp_name="group1462" type="group">
          <obj_property name="label">data_if</obj_property>
          <obj_property name="DisplayName">label</obj_property>

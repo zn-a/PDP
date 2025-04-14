@@ -2,7 +2,11 @@
 
 ## Getting started
 
-Required software:
+Required software if running in the server:
+
+* Jupyer Notebooks
+
+Required software if running locally:
 
 * Jupyer Notebooks
 * Vivado 2024.2: Free version is enough for the FPGA we target.
@@ -13,8 +17,8 @@ Guides
 
 * [Terms](terms)
 * [Workflow](workflow)
-* [Hardware: vivado and rtl](Hardware-Vivado-project-and-RTL)
-* [Hardware: running the design on the FPGA]()
+* [Hardware: vivado and rtl](#hardware-vivado-project-and-rtl)
+* [Hardware: running the design on the FPGA](#hardware-running-on-the-fpga)
 * Tools installation to run the stuff locally: [gcc]() and [llvm]().
 * Working with the server [server]().
 
@@ -24,12 +28,9 @@ Guides
 
 * **Out of Context (OOC) synthesis**: running synthesis of an IP or module independently from the rest of the system, it is an intermediate step to check that there isn't anything fundamentally wrong with your design or to get an initial estimation of resources/timing without having to synthesize the whole design.
 
-
-
-
 ## Workflow
 
-The expected workflow for this project is as follows:
+The expected workflow for the project is as follows:
 
 * Initially you are given a working software AES C code and a working riscy core. Go through every step first to understand what happens:
   1. Check what the C code does.
@@ -61,7 +62,7 @@ The system being simulated and implemented on the fpga is generated out of a tcl
 
 ### Scripts:
 
-A few scripts to perform all the basic functions are provided under `pdp-project/hardware/scripts`, they all require to be under `pdp-project/hardware/` when executing them.
+A few scripts to perform all the basic steps are provided under `pdp-project/hardware/scripts`, they all require to be under `pdp-project/hardware/` when executing them.
 
 Open vivado, and from the tcl console within it:
 
@@ -120,7 +121,7 @@ Once logged in, you will be able to browse its contents and run Jupyter Notebook
 
 If the initial copy of the riscy fpga directory is not present, or you just want a fresh one, you can find it under: `pdp-project/hardware/src/sw/fpga`. This base directory contains a bitstream, memory initialization files and a jupyter notebook generated to run the base software AES implementation in the riscy core on the FPGA.
 
-Which contains:
+The base riscy fpga directory contains:
 
 ![AAAAAA](./images/base_riscy_folder.png)
 
@@ -130,7 +131,7 @@ Which contains:
 
 -`overlays`: should contain: `base_riscy.bit`, `base_riscy.hwh` and `base_riscy.tcl`. These are the files required to write the bitstream to the rpgrammable logic (PL) and setup the processing system to perform reads/writes. If you generate a new bitstream, you will have to copy and rename both `riscv_wrapper.bit` and `riscv_wrapper.tcl` from the implementation directory, and the hardware hand off (`.hwh`) file from the gen directory (`pdp-project/hardware/vivado/riscy/riscy.gen/sources_1/bd/riscv/hw_handoff/riscv.hwh`).
 
-
+Open the `base_riscy.ipynb` and you can execute the cells one by one in order, and observe the behaviour.
 
 ## Software
 
@@ -152,12 +153,24 @@ You are encouraged to inspect and modify the Makefile compilation commands.
 
 ## Run server
 
+A server has been setup with all the contents needed for the course.
+Every group will get a unique user and password shared between all the members to access it. 
+
+It is highly recommended to logout when you stop working, as it will keep on consuming resources otherwise (you will be logued out automatically as well after 4 hours, so save your work).
+
 ### Connect
-X2GO instructions
+
+**You need to use VPN if you access the server from eduroam or outside of the TU Delft.**
+
+[X2GO setup instructions](https://qce-it-infra.ewi.tudelft.nl/faq.html#how-to-setup-x2go-for-the-qce-xportal-server).
+
+Hostname: ce-procdesign01.ewi.tudelft.nl
+
+We will send you the login username and password once the groups are registered.
 
 ### Edit files
 
-Two ways are available to edit files at the server:
+Two ways are available to edit files directly in the server:
 
 * Within the server: vim or gedit.
 
@@ -165,7 +178,26 @@ Two ways are available to edit files at the server:
 
 ### Directory structure
 
+All the tools are already installed in it and available under the directory: `TBD`. This directory should not be used to store changes or other files that were not there in the first place.
+
+The tools and projects available in the shared directory:
+* RISCV GCC
+* Standard LLVM
+* PDP-Project: both hardware and software
+
+We recommend copying the PDP-Project and the LLVM to your local area, as you will need to edit/generate files:
+
+```
+cp TBD/pdp-project TBD/pdp-project
+cp TBD/llvm TBD/llvm
+```
+
+Once copied, make sure to update the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of llvm.
+
+
 ## Run locally
+
+If you want to run stuff locally you can clone this repo and install the tools used by it as explained below, we recommend the use of the server, but a local setup might be nice for some users.
 
 ### Install llvm
 
