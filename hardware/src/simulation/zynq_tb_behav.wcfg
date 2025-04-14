@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="zynq_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_zynq_tb_sv " />
+            <top_module name="ahblite_axi_bridge_pkg" />
+            <top_module name="axi_bram_ctrl_funcs" />
+            <top_module name="axi_vip_pkg" />
+            <top_module name="glbl" />
+            <top_module name="std" />
+            <top_module name="vcomponents" />
+            <top_module name="xil_common_vip_pkg" />
+            <top_module name="zynq_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="8.098925001 ms"></ZoomEndTime>
+      <Cursor1Time time="0.000000000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="254"></NameColumnWidth>
+      <ValueColumnWidth column_width="249"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/zynq_tb/tb_ACLK" type="logic">
+      <obj_property name="ElementShortName">tb_ACLK</obj_property>
+      <obj_property name="ObjectShortName">tb_ACLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/zynq_tb/tb_ARESETn" type="logic">
+      <obj_property name="ElementShortName">tb_ARESETn</obj_property>
+      <obj_property name="ObjectShortName">tb_ARESETn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/zynq_tb/sys_clk" type="logic">
+      <obj_property name="ElementShortName">sys_clk</obj_property>
+      <obj_property name="ObjectShortName">sys_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/zynq_tb/sys_rstn" type="logic">
+      <obj_property name="ElementShortName">sys_rstn</obj_property>
+      <obj_property name="ObjectShortName">sys_rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/zynq_tb/expected_datas" type="array">
+      <obj_property name="ElementShortName">expected_datas[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">expected_datas[0:3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/zynq_tb/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[0:3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group168" type="group">
+      <obj_property name="label">mem_snoop</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/ACLK" type="logic">
+         <obj_property name="ElementShortName">ACLK</obj_property>
+         <obj_property name="ObjectShortName">ACLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/RSTN" type="logic">
+         <obj_property name="ElementShortName">RSTN</obj_property>
+         <obj_property name="ObjectShortName">RSTN</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/CLK_EN" type="logic">
+         <obj_property name="ElementShortName">CLK_EN</obj_property>
+         <obj_property name="ObjectShortName">CLK_EN</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/WEN" type="logic">
+         <obj_property name="ElementShortName">WEN</obj_property>
+         <obj_property name="ObjectShortName">WEN</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/WADDR" type="array">
+         <obj_property name="ElementShortName">WADDR[14:0]</obj_property>
+         <obj_property name="ObjectShortName">WADDR[14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/WDATA" type="array">
+         <obj_property name="ElementShortName">WDATA[31:0]</obj_property>
+         <obj_property name="ObjectShortName">WDATA[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/CLK_COUNT" type="array">
+         <obj_property name="ElementShortName">CLK_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">CLK_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/MATCH" type="logic">
+         <obj_property name="ElementShortName">MATCH</obj_property>
+         <obj_property name="ObjectShortName">MATCH</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/clk_counter" type="array">
+         <obj_property name="ElementShortName">clk_counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">clk_counter[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/match_found" type="logic">
+         <obj_property name="ElementShortName">match_found</obj_property>
+         <obj_property name="ObjectShortName">match_found</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/addr_match" type="logic">
+         <obj_property name="ElementShortName">addr_match</obj_property>
+         <obj_property name="ObjectShortName">addr_match</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/mem_snoop_match_0/inst/data_match" type="logic">
+         <obj_property name="ElementShortName">data_match</obj_property>
+         <obj_property name="ObjectShortName">data_match</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group169" type="group">
+      <obj_property name="label">data_mem</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/clka" type="logic">
+         <obj_property name="ElementShortName">clka</obj_property>
+         <obj_property name="ObjectShortName">clka</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/wea" type="array">
+         <obj_property name="ElementShortName">wea[3:0]</obj_property>
+         <obj_property name="ObjectShortName">wea[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/addra" type="array">
+         <obj_property name="ElementShortName">addra[12:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[12:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/dina" type="array">
+         <obj_property name="ElementShortName">dina[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dina[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/douta" type="array">
+         <obj_property name="ElementShortName">douta[31:0]</obj_property>
+         <obj_property name="ObjectShortName">douta[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/clkb" type="logic">
+         <obj_property name="ElementShortName">clkb</obj_property>
+         <obj_property name="ObjectShortName">clkb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/web" type="array">
+         <obj_property name="ElementShortName">web[3:0]</obj_property>
+         <obj_property name="ObjectShortName">web[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/addrb" type="array">
+         <obj_property name="ElementShortName">addrb[12:0]</obj_property>
+         <obj_property name="ObjectShortName">addrb[12:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/dinb" type="array">
+         <obj_property name="ElementShortName">dinb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dinb[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/blk_mem_gen_2/doutb" type="array">
+         <obj_property name="ElementShortName">doutb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1461" type="group">
+      <obj_property name="label">core_mem_if</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="group1462" type="group">
+         <obj_property name="label">data_if</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_req_o" type="logic">
+            <obj_property name="ElementShortName">data_req_o</obj_property>
+            <obj_property name="ObjectShortName">data_req_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_gnt_i" type="logic">
+            <obj_property name="ElementShortName">data_gnt_i</obj_property>
+            <obj_property name="ObjectShortName">data_gnt_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_rvalid_i" type="logic">
+            <obj_property name="ElementShortName">data_rvalid_i</obj_property>
+            <obj_property name="ObjectShortName">data_rvalid_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_we_o" type="logic">
+            <obj_property name="ElementShortName">data_we_o</obj_property>
+            <obj_property name="ObjectShortName">data_we_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_be_o" type="array">
+            <obj_property name="ElementShortName">data_be_o[3:0]</obj_property>
+            <obj_property name="ObjectShortName">data_be_o[3:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_addr_o" type="array">
+            <obj_property name="ElementShortName">data_addr_o[31:0]</obj_property>
+            <obj_property name="ObjectShortName">data_addr_o[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_wdata_o" type="array">
+            <obj_property name="ElementShortName">data_wdata_o[31:0]</obj_property>
+            <obj_property name="ObjectShortName">data_wdata_o[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_rdata_i" type="array">
+            <obj_property name="ElementShortName">data_rdata_i[31:0]</obj_property>
+            <obj_property name="ObjectShortName">data_rdata_i[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/data_err_i" type="logic">
+            <obj_property name="ElementShortName">data_err_i</obj_property>
+            <obj_property name="ObjectShortName">data_err_i</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group1446" type="group">
+         <obj_property name="label">instr</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/instr_req_o" type="logic">
+            <obj_property name="ElementShortName">instr_req_o</obj_property>
+            <obj_property name="ObjectShortName">instr_req_o</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/instr_gnt_i" type="logic">
+            <obj_property name="ElementShortName">instr_gnt_i</obj_property>
+            <obj_property name="ObjectShortName">instr_gnt_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/instr_rvalid_i" type="logic">
+            <obj_property name="ElementShortName">instr_rvalid_i</obj_property>
+            <obj_property name="ObjectShortName">instr_rvalid_i</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/instr_addr_o" type="array">
+            <obj_property name="ElementShortName">instr_addr_o[31:0]</obj_property>
+            <obj_property name="ObjectShortName">instr_addr_o[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/zynq_tb/zynq_sys/riscv_i/riscv_top_ahb3lite_0/inst/RISCV_CORE/instr_rdata_i" type="array">
+            <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
+            <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>
