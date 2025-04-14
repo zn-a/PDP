@@ -172,7 +172,7 @@ int main()
     size_t len = 16; // Single block
 
     uintptr_t addr;
-	uint32_t value;
+    uint32_t value;
 
     aes128_ecb_encrypt(plaintext, len, key, ciphertext);
 
@@ -183,7 +183,7 @@ int main()
     write_v_to_address(addr, ciphertext);
 
     // Check if calculated and expected match:
-	addr = 0x0100000 + 0x2000 + 0x04;  // Some memory-mapped register or memory location
+    addr = 0x0100000 + 0x2000 + 0x04;  // Some memory-mapped register or memory location
     value = 0xCAFEBABE; //Assume arrays match initially
     for (int i = 0; i < 16; i++) {
         if (ciphertext[i] != expected_output[i]) {
@@ -194,7 +194,7 @@ int main()
     write_to_address(addr, value);
 
     //END OF TEST WRITE (used to identify when the execution of the C code finished): DO NOT REMOVE!
-	addr = 0x0100000 + 0x2000; // SRAM base address is 0x0100000.
+    addr = 0x0100000 + 0x2000; // SRAM base address is 0x0100000.
     value = 0xDEADBEEF;
     write_to_address(addr, value);
 
