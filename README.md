@@ -1,7 +1,5 @@
 # PDP-Project
 
-
-
 ## Getting started
 
 Required software:
@@ -10,6 +8,46 @@ Required software:
 * Vivado 2024.2: Free version is enough for the FPGA we target.
 * [LLVM](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm): see [install llvm](#install-llvm)
 * [RISCV GCC](https://github.com/riscv-collab/riscv-gnu-toolchain): see [install gcc](#install-gcc)
+
+Guides
+
+* [Terms](terms)
+* [Workflow](workflow)
+* [Hardware: vivado and rtl](Hardware-Vivado-project-and-RTL)
+* [Hardware: running the design on the FPGA]()
+* Tools installation to run the stuff locally: [gcc]() and [llvm]().
+* Working with the server [server]().
+
+## Terms:
+
+* **Memory initialization files (.coe)**: these are just the initial contents of a memory written in a format that vivado understands.
+
+* **Out of Context (OOC) synthesis**: running synthesis of an IP or module independently from the rest of the system, it is an intermediate step to check that there isn't anything fundamentally wrong with your design or to get an initial estimation of resources/timing without having to synthesize the whole design.
+
+
+
+
+## Workflow
+
+The expected workflow for this project is as follows:
+
+* Initially you are given a working software AES C code and a working riscy core. Go through every step first to understand what happens:
+  1. Check what the C code does.
+  2. Compile the C code into memory initialization files.
+  3. Check what the FPGA system and the testbench look like.
+  4. Simulate using your memory initialization files.
+  5. Run OOC synthesis to check baseline results.
+  6. Generate bitstream and run in the FPGA.
+
+* If you write new C code or modify LLVM: proceed to generate the `.coe` files of your C program and verify it works in simulation.
+
+* If you modify your core: write program to test or modify testbench as needed and verify in simulation.
+
+* If it works in simulation, verify it passes timing and check the utilization reports for anything unexpected via OOC synthesis.
+
+* If everything seems fine in OOC synthesis, proceed to generate bitstream and benchmark in FPGA.
+
+* Repeat
 
 ## Hardware: Vivado project and RTL
 
@@ -112,7 +150,24 @@ You can find the generated binaries under `pdp-project/software/output` and the 
 
 You are encouraged to inspect and modify the Makefile compilation commands.
 
-## Install LLVM
+## Run server
+
+### Connect
+X2GO instructions
+
+### Edit files
+
+Two ways are available to edit files at the server:
+
+* Within the server: vim or gedit.
+
+* From your pc, use VSCode with the [VSCode ssh plugin](https://carleton.ca/scs/2024/vscode-remote-access-and-code-editing/).
+
+### Directory structure
+
+## Run locally
+
+### Install llvm
 
 Source: [instructions](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm).
 ```
@@ -129,7 +184,7 @@ cmake -G Ninja  -DLLVM_TARGETS_TO_BUILD="RISCV" -DLLVM_ENABLE_PROJECTS="clang;ll
 ninja -j6
 ```
 
-## Install GCC
+### Install GCC
 
 Source: [instructions](https://github.com/riscv-collab/riscv-gnu-toolchain).
 ```
