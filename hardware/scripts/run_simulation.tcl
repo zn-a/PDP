@@ -8,11 +8,11 @@ set coe_data_path [string cat $current_dir "/src/sw/mem_files/data.coe"]
 set_property -dict [list \
   CONFIG.Coe_File $coe_program_path \
   CONFIG.Load_Init_File {true} \
-] [get_bd_cells blk_mem_gen_1]
+] [get_bd_cells instr_mem]
 set_property -dict [list \
   CONFIG.Coe_File $coe_data_path \
   CONFIG.Load_Init_File {true} \
-] [get_bd_cells blk_mem_gen_2]
+] [get_bd_cells data_mem]
 
 #launch sim
 launch_simulation

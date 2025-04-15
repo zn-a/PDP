@@ -5,7 +5,7 @@
 Required software if running in the server:
 
 * Jupyer Notebooks
-* X2GO
+* X2GO: see [resources](#resources).
 * VSCode (recommended)
 
 Required software if running locally:
