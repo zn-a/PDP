@@ -204,7 +204,7 @@ Two ways are available to edit files directly in the server:
 
 ### Directory structure
 
-All the tools are already installed in it and available under the directory: `TBD`. This directory should not be used to store changes or other files that were not there in the first place.
+All the tools are already installed in it and available under the directory: `~/course`. This directory should not be used to store changes or other files that were not there in the first place.
 
 The tools and projects available in the shared directory:
 * RISCV GCC
@@ -214,11 +214,11 @@ The tools and projects available in the shared directory:
 We recommend copying the PDP-Project and the LLVM to your local area, as you will need to edit/generate files:
 
 ```
-cp TBD/pdp-project TBD/pdp-project
-cp TBD/llvm TBD/llvm
+cp ~/course/pdp-project ~/pdp-project
+cp ~/course/llvm ~/llvm
 ```
 
-Once copied, make sure to update the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of llvm.
+Once copied, make sure to update the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of llvm (update path assigned to variables `RISCV_GCC` and `LLVM`).
 
 
 ## Run locally
