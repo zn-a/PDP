@@ -260,7 +260,7 @@ sudo dnf install autoconf automake curl python3 python3-pip python3-tomli \
     glibc-devel libtool patchutils bc zlib-devel expat-devel ninja-build \
     git cmake glib2-devel slirp4netns
 
-echo 'export PATH=~/~riscv-gnu-toolchain/riscv/bin:$PATH' >> ~/.bashrc
+echo 'export PATH=~/riscv-gnu-toolchain/riscv/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 ./configure --prefix=$HOME/riscv --with-arch=rv32imafdc_zba_zbb_zbc_zbs --with-abi=ilp32d
 make
