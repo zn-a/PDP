@@ -4,38 +4,39 @@
 
 Required software if running in the server:
 
-* Jupyer Notebooks
-* X2GO: see [resources](#resources).
-* VSCode (recommended)
+- Jupyer Notebooks
+- X2GO: see [resources](#resources).
+- VSCode (recommended)
 
 Required software if running locally:
 
-* Jupyer Notebooks
-* [Vivado 2024.2](https://www.xilinx.com/support/download.html): Free version is enough for the FPGA we target.
-* [LLVM](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm): see [install llvm](#install-llvm)
-* [RISCV GCC](https://github.com/riscv-collab/riscv-gnu-toolchain): see [install gcc](#install-gcc)
-* VSCode (recommended)
+- Jupyer Notebooks
+- [Vivado 2024.2](https://www.xilinx.com/support/download.html): Free version is enough for the FPGA we target.
+- [LLVM](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm): see [install llvm](#install-llvm)
+- [RISCV GCC](https://github.com/riscv-collab/riscv-gnu-toolchain): see [install gcc](#install-gcc)
+- VSCode (recommended)
 
 Guides:
 
-* [Workflow](workflow)
-* [Hardware: vivado and rtl](#hardware-vivado-project-and-rtl)
-* [Hardware: running the design on the FPGA](#hardware-running-on-the-fpga)
-* [Working with the server](#run-server)
-* [Guides for local tool setup](#run-locally)
-* [Resources](#resources)
-
+- [Workflow](workflow)
+- [Hardware: vivado and rtl](#hardware-vivado-project-and-rtl)
+- [Hardware: running the design on the FPGA](#hardware-running-on-the-fpga)
+- [Working with the server](#run-server)
+- [Guides for local tool setup](#run-locally)
+- [Resources](#resources)
 
 Terms:
-* **Memory initialization files (.coe)**: these are just the initial contents of a memory written in a format that vivado understands.
 
-* **Out of Context (OOC) synthesis**: running synthesis of an IP or module independently from the rest of the system, it is an intermediate step to check that there isn't anything fundamentally wrong with your design or to get an initial estimation of resources/timing without having to synthesize the whole design.
+- **Memory initialization files (.coe)**: these are just the initial contents of a memory written in a format that vivado understands.
+
+- **Out of Context (OOC) synthesis**: running synthesis of an IP or module independently from the rest of the system, it is an intermediate step to check that there isn't anything fundamentally wrong with your design or to get an initial estimation of resources/timing without having to synthesize the whole design.
 
 ## Workflow
 
 The expected workflow for the project is as follows:
 
-* Initially you are given a working software AES C code and a working riscy core. Go through every step first to understand what happens:
+- Initially you are given a working software AES C code and a working riscy core. Go through every step first to understand what happens:
+
   1. Check what the C code does.
   2. Compile the C code into memory initialization files.
   3. Check what the FPGA system and the testbench look like.
@@ -43,15 +44,15 @@ The expected workflow for the project is as follows:
   5. Run OOC synthesis to check baseline results.
   6. Generate bitstream and run in the FPGA.
 
-* If you write new C code or modify LLVM: proceed to generate the `.coe` files of your C program and verify it works in simulation.
+- If you write new C code or modify LLVM: proceed to generate the `.coe` files of your C program and verify it works in simulation.
 
-* If you modify your core: write program to test or modify testbench as needed and verify in simulation.
+- If you modify your core: write program to test or modify testbench as needed and verify in simulation.
 
-* If it works in simulation, verify it passes timing and check the utilization reports for anything unexpected via OOC synthesis.
+- If it works in simulation, verify it passes timing and check the utilization reports for anything unexpected via OOC synthesis.
 
-* If everything seems fine in OOC synthesis, proceed to generate bitstream and benchmark in FPGA.
+- If everything seems fine in OOC synthesis, proceed to generate bitstream and benchmark in FPGA.
 
-* Repeat
+- Repeat
 
 ## Hardware: Vivado project and RTL
 
@@ -106,14 +107,14 @@ Using this conexion method we can read and write the instructions and data memor
 
 ### Setup:
 
-* The SD card in the PYNQ board already has all the software required for this, you will only need to set up your PC to be able to access it via ethernet.
+- The SD card in the PYNQ board already has all the software required for this, you will only need to set up your PC to be able to access it via ethernet.
 
-* Make sure the board is correctly setup, this is explained [here](https://pynq.readthedocs.io/en/latest/getting_started/pynq_z1_setup.html).
+- Make sure the board is correctly setup, this is explained [here](https://pynq.readthedocs.io/en/latest/getting_started/pynq_z1_setup.html).
 
-* You will have to set up the IP address of your laptop, instructions [here](https://pynq.readthedocs.io/en/latest/appendix/assign_a_static_ip.html#assign-a-static-ip-address).
+- You will have to set up the IP address of your laptop, instructions [here](https://pynq.readthedocs.io/en/latest/appendix/assign_a_static_ip.html#assign-a-static-ip-address).
 
-* Then you can connect via web browser by typing the following broswer address: `http://192.168.2.99/`; or ssh into it with: `ssh xilinx@192.168.2.99`. We recommend you to use the browser.
-If you are asked for a username or a password, it is `xilinx` for both.
+- Then you can connect via web browser by typing the following broswer address: `http://192.168.2.99/`; or ssh into it with: `ssh xilinx@192.168.2.99`. We recommend you to use the browser.
+  If you are asked for a username or a password, it is `xilinx` for both.
 
 ### Use:
 
@@ -180,7 +181,7 @@ ninja
 ## Run server
 
 A server has been setup with all the contents needed for the course.
-Every group will get a unique user and password shared between all the members to access it. 
+Every group will get a unique user and password shared between all the members to access it.
 
 It is highly recommended to logout when you stop working, as it will keep on consuming resources otherwise (you will be logued out automatically as well after 4 hours, so save your work).
 
@@ -198,18 +199,19 @@ We will send you the login username and password once the groups are registered.
 
 Two ways are available to edit files directly in the server:
 
-* Within the server: vim or gedit.
+- Within the server: vim or gedit.
 
-* From your pc, use VSCode with the [VSCode ssh plugin](https://carleton.ca/scs/2024/vscode-remote-access-and-code-editing/).
+- From your pc, use VSCode with the [VSCode ssh plugin](https://carleton.ca/scs/2024/vscode-remote-access-and-code-editing/).
 
 ### Directory structure
 
 All the tools are already installed in it and available under the directory: `~/course`. This directory should not be used to store changes or other files that were not there in the first place.
 
 The tools and projects available in the shared directory:
-* RISCV GCC
-* Standard LLVM
-* PDP-Project: both hardware and software
+
+- RISCV GCC
+- Standard LLVM
+- PDP-Project: both hardware and software
 
 We recommend copying the PDP-Project and the LLVM to your local area, as you will need to edit/generate files:
 
@@ -220,7 +222,6 @@ cp ~/course/llvm ~/llvm
 
 Once copied, make sure to update the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of llvm (update path assigned to variables `RISCV_GCC` and `LLVM`).
 
-
 ## Run locally
 
 If you want to run stuff locally you can clone this repo and install the tools used by it as explained below, we recommend the use of the server, but a local setup might be nice for some users.
@@ -228,6 +229,7 @@ If you want to run stuff locally you can clone this repo and install the tools u
 ### Install llvm
 
 Source: [instructions](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm).
+
 ```
 git clone https://github.com/llvm/llvm-project.git
 
@@ -245,22 +247,28 @@ ninja -j6
 ### Install GCC
 
 Source: [instructions](https://github.com/riscv-collab/riscv-gnu-toolchain).
+
 ```
 git clone https://github.com/riscv/riscv-gnu-toolchain
 
 cd riscv-gnu-toolchain
 
-#On ubuntu (for other check link):
-sudo apt-get install autoconf automake autotools-dev curl python3 python3-pip python3-tomli libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build git cmake libglib2.0-dev libslirp-dev
 
-./configure --prefix=./riscv --with-arch=rv32imafdcbk --with-abi=ilp32d
 
+sudo dnf install autoconf automake curl python3 python3-pip python3-tomli \
+    gmp-devel mpfr-devel libmpc-devel gawk bison flex texinfo gcc gcc-c++ \
+    glibc-devel libtool patchutils bc zlib-devel expat-devel ninja-build \
+    git cmake glib2-devel slirp4netns
+
+echo 'export PATH=~/~riscv-gnu-toolchain/riscv/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+./configure --prefix=$HOME/riscv --with-arch=rv32imafdc_zba_zbb_zbc_zbs --with-abi=ilp32d
 make
 ```
 
 ## Resources
 
-* [RISC-V Cryptography Extension](https://lists.riscv.org/g/dev-partners/attachment/43/0/riscv-crypto-spec-scalar-v0.9.3-DRAFT.pdf).
-* [Adding custom instruction to LLVM backend](https://github.com/10x-Engineers/clang-builtin-tutorial).
-* [PYNQ board setup](https://pynq.readthedocs.io/en/latest/getting_started/pynq_z1_setup.html).
-* [X2GO setup for QCE servers use](https://qce-it-infra.ewi.tudelft.nl/faq.html#how-to-setup-x2go-for-the-qce-xportal-server).
+- [RISC-V Cryptography Extension](https://lists.riscv.org/g/dev-partners/attachment/43/0/riscv-crypto-spec-scalar-v0.9.3-DRAFT.pdf).
+- [Adding custom instruction to LLVM backend](https://github.com/10x-Engineers/clang-builtin-tutorial).
+- [PYNQ board setup](https://pynq.readthedocs.io/en/latest/getting_started/pynq_z1_setup.html).
+- [X2GO setup for QCE servers use](https://qce-it-infra.ewi.tudelft.nl/faq.html#how-to-setup-x2go-for-the-qce-xportal-server).
