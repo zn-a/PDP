@@ -266,6 +266,74 @@ source ~/.bashrc
 make
 ```
 
+## Run locally (Ubuntu 25.04)
+
+### Install Dependencies:
+
+```sh
+sudo apt update
+sudo apt install -y \
+  git cmake ninja-build curl python3 python3-pip python3-tomli \
+  libmpc-dev libmpfr-dev libgmp-dev gawk bison flex texinfo \
+  build-essential libtool patchutils bc zlib1g-dev libexpat-dev \
+  libglib2.0-dev libslirp-dev
+```
+
+### Install Vivado 2024.2:
+
+```sh
+chmod a+x ./FPGAs_AdaptiveSoCs_Unified_2024.2_1113_1001_Lin64.bin
+sudo ./FPGAs_AdaptiveSoCs_Unified_2024.2_1113_1001_Lin64.bin
+```
+
+### Install LLVM:
+
+```sh
+cd ~
+git clone https://github.com/llvm/llvm-project.git
+cd llvm-project
+
+mkdir build-release
+cd build-release
+
+cmake -G Ninja \
+  -DLLVM_TARGETS_TO_BUILD="RISCV" \
+  -DLLVM_ENABLE_PROJECTS="clang;lld" \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DLLVM_BUILD_TESTS=OFF \
+  -DLLVM_INCLUDE_TESTS=OFF \
+  ../llvm
+
+ninja -j$(nproc)
+```
+
+### Install GCC:
+
+```sh
+cd ~
+git clone https://github.com/riscv/riscv-gnu-toolchain
+cd riscv-gnu-toolchain
+
+./configure --prefix=/home/$USER/riscv-gnu-toolchain/riscv \
+  --with-arch=rv32imac_zicsr --with-abi=ilp32
+
+make -j$(nproc)
+```
+
+### Set up environment variables (add to `~/.zshrc` or `~/.bashrc`):
+
+```sh
+echo 'export PATH="$HOME/riscv-gnu-toolchain/riscv/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### Test it:
+
+```sh
+which riscv32-unknown-elf-gcc
+riscv32-unknown-elf-gcc --version
+```
+
 ## Resources
 
 - [RISC-V Cryptography Extension](https://lists.riscv.org/g/dev-partners/attachment/43/0/riscv-crypto-spec-scalar-v0.9.3-DRAFT.pdf).
