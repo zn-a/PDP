@@ -222,53 +222,24 @@ cp ~/course/llvm ~/llvm
 
 Once copied, make sure to update the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of llvm (update path assigned to variables `RISCV_GCC` and `LLVM`).
 
-## Run locally
+## Run locally (Fedora)
 
 If you want to run stuff locally you can clone this repo and install the tools used by it as explained below, we recommend the use of the server, but a local setup might be nice for some users.
 
-### Install llvm
-
-Source: [instructions](https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm).
-
-```
-git clone https://github.com/llvm/llvm-project.git
-
-cd llvm-project
-
-mkdir build-release
-
-cd build-release
-
-cmake -G Ninja  -DLLVM_TARGETS_TO_BUILD="RISCV" -DLLVM_ENABLE_PROJECTS="clang;lld" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF "../llvm/"
-
-ninja -j6
-```
-
-### Install GCC
-
-Source: [instructions](https://github.com/riscv-collab/riscv-gnu-toolchain).
-
-```
-git clone https://github.com/riscv/riscv-gnu-toolchain
-
-cd riscv-gnu-toolchain
-
-
-
-sudo dnf install autoconf automake curl python3 python3-pip python3-tomli \
-    gmp-devel mpfr-devel libmpc-devel gawk bison flex texinfo gcc gcc-c++ \
-    glibc-devel libtool patchutils bc zlib-devel expat-devel ninja-build \
-    git cmake glib2-devel slirp4netns
-
-echo 'export PATH=~/riscv-gnu-toolchain/riscv/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-./configure --prefix=$HOME/riscv --with-arch=rv32imafdc_zba_zbb_zbc_zbs --with-abi=ilp32d
-make
-```
-
-## Run locally (Ubuntu 25.04)
-
 ### Install Dependencies:
+
+#### Fedora:
+
+```sh
+sudo dnf update
+sudo dnf install -y \
+  git cmake ninja-build curl python3 python3-pip python3-tomli \
+  gmp-devel mpfr-devel libmpc-devel gawk bison flex texinfo \
+  gcc gcc-c++ glibc-devel libtool patchutils bc zlib-devel \
+  expat-devel glib2-devel slirp4netns
+```
+
+#### Ubuntu:
 
 ```sh
 sudo apt update
@@ -277,13 +248,6 @@ sudo apt install -y \
   libmpc-dev libmpfr-dev libgmp-dev gawk bison flex texinfo \
   build-essential libtool patchutils bc zlib1g-dev libexpat-dev \
   libglib2.0-dev libslirp-dev
-```
-
-### Install Vivado 2024.2:
-
-```sh
-chmod a+x ./FPGAs_AdaptiveSoCs_Unified_2024.2_1113_1001_Lin64.bin
-sudo ./FPGAs_AdaptiveSoCs_Unified_2024.2_1113_1001_Lin64.bin
 ```
 
 ### Install LLVM:
@@ -308,6 +272,73 @@ ninja -j$(nproc)
 ```
 
 ### Install GCC:
+
+#### Prebuilt:
+
+Download `riscv-tools.tar.gz` and extract it into your home directory:
+
+```sh
+cd ~
+tar -xzf riscv-tools.tar.gz
+```
+
+This will create:
+
+```sh
+~/riscv-tools/bin/riscv-none-elf-gcc
+```
+
+Add this to your `~/.bashrc` or `~/.zshrc`:
+
+```sh
+export RISCV_GCC=$HOME/riscv-tools
+export RISCV_ARCH=riscv-none-elf
+export RISCV=$RISCV_GCC
+```
+
+Then reload your shell:
+
+```sh
+source ~/.bashrc     # or ~/.zshrc if using zsh
+```
+
+Check if the toolchain is working:
+
+```sh
+which riscv-none-elf-gcc
+riscv-none-elf-gcc --version
+```
+
+Run example:
+
+```sh
+cd pdp-project-05/software
+make soft
+```
+
+#### Build from source (doesn't work):
+
+Source: [instructions](https://github.com/riscv-collab/riscv-gnu-toolchain).
+
+##### Fedora:
+
+```sh
+cd ~
+git clone https://github.com/riscv/riscv-gnu-toolchain
+cd riscv-gnu-toolchain
+
+sudo dnf install autoconf automake curl python3 python3-pip python3-tomli \
+    gmp-devel mpfr-devel libmpc-devel gawk bison flex texinfo gcc gcc-c++ \
+    glibc-devel libtool patchutils bc zlib-devel expat-devel ninja-build \
+    git cmake glib2-devel slirp4netns
+
+echo 'export PATH=~/riscv-gnu-toolchain/riscv/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+./configure --prefix=$HOME/riscv --with-arch=rv32imafdc_zba_zbb_zbc_zbs --with-abi=ilp32d
+make
+```
+
+##### Ubuntu:
 
 ```sh
 cd ~
