@@ -250,6 +250,13 @@ sudo apt install -y \
   libglib2.0-dev libslirp-dev
 ```
 
+### Install Vivado 2024.2:
+
+```sh
+chmod a+x FPGAs_AdaptiveSoCs_Unified_2024.2_1113_1001_Lin64.bin
+./FPGAs_AdaptiveSoCs_Unified_2024.2_1113_1001_Lin64.bin
+```
+
 ### Install LLVM:
 
 ```sh
