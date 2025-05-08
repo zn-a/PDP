@@ -70,7 +70,7 @@ A few scripts to perform all the basic steps are provided under `pdp-project/har
 
 Open vivado, and from the tcl console within it:
 
-```
+```sh
 cd ./pdp-project/hardware
 
 # To create the base project:
@@ -155,7 +155,7 @@ First you will need to update the paths (RISCV_GCC and LLVM) found in the config
 
 To generate the binaries and the memory initialization files used for vivado simulation and fpga runs just:
 
-```
+```sh
 cd pdp-project/software
 
 make soft
@@ -171,7 +171,7 @@ The provided LLVM toolchain in the server is already compiled, but after any mod
 
 If you have only modified the RISCV backend, you don't need to recompile the whole LLVM, to save time by recompiling only the modified RISCV backed do:
 
-```
+```sh
 cd /path/to/wherever/your/llvm/build/is #TBD
 cmake -G Ninja  -DLLVM_TARGETS_TO_BUILD="RISCV" -DLLVM_ENABLE_PROJECTS="clang;lld" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF "../llvm/"
 
@@ -215,7 +215,7 @@ The tools and projects available in the shared directory:
 
 We recommend copying the PDP-Project and the LLVM to your local area, as you will need to edit/generate files:
 
-```
+```sh
 cp ~/course/pdp-project ~/pdp-project
 cp ~/course/llvm ~/llvm
 ```
@@ -271,9 +271,21 @@ cmake -G Ninja \
 ninja -j$(nproc)
 ```
 
+Add this to your `~/.bashrc` or `~/.zshrc`:
+
+```sh
+export PATH="$HOME/llvm-project/build-release/bin:$PATH"
+```
+
+Then reload your shell:
+
+```sh
+source ~/.bashrc     # or ~/.zshrc if using zsh
+```
+
 ### Install GCC:
 
-#### Prebuilt:
+#### Option 1: Use prebuilt (works):
 
 Download `riscv-tools.tar.gz` and extract it into your home directory:
 
@@ -291,9 +303,8 @@ This will create:
 Add this to your `~/.bashrc` or `~/.zshrc`:
 
 ```sh
-export RISCV_GCC=$HOME/riscv-tools
-export RISCV_ARCH=riscv-none-elf
-export RISCV=$RISCV_GCC
+export RISCV="$HOME/riscv-tools"
+export PATH="$RISCV/bin:$PATH"
 ```
 
 Then reload your shell:
@@ -309,6 +320,16 @@ which riscv-none-elf-gcc
 riscv-none-elf-gcc --version
 ```
 
+You should get:
+
+```
+~/riscv-tools/bin/riscv-none-elf-gcc
+riscv-none-elf-gcc (GCC) 13.1.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
 Run example:
 
 ```sh
@@ -316,46 +337,57 @@ cd pdp-project-05/software
 make soft
 ```
 
-#### Build from source (doesn't work):
+#### Option 2: Build from source (doesn't work):
 
 Source: [instructions](https://github.com/riscv-collab/riscv-gnu-toolchain).
 
 ##### Fedora:
 
 ```sh
+# 1. Install dependencies
+sudo dnf update
+sudo dnf install -y \
+  autoconf automake curl python3 python3-pip python3-tomli \
+  gmp-devel mpfr-devel libmpc-devel gawk bison flex texinfo gcc gcc-c++ \
+  glibc-devel libtool patchutils bc zlib-devel expat-devel ninja-build \
+  git cmake glib2-devel slirp4netns
+
+# 2. Clone `riscv-gnu-toolchain`
 cd ~
 git clone https://github.com/riscv/riscv-gnu-toolchain
 cd riscv-gnu-toolchain
 
-sudo dnf install autoconf automake curl python3 python3-pip python3-tomli \
-    gmp-devel mpfr-devel libmpc-devel gawk bison flex texinfo gcc gcc-c++ \
-    glibc-devel libtool patchutils bc zlib-devel expat-devel ninja-build \
-    git cmake glib2-devel slirp4netns
-
-echo 'export PATH=~/riscv-gnu-toolchain/riscv/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-./configure --prefix=$HOME/riscv --with-arch=rv32imafdc_zba_zbb_zbc_zbs --with-abi=ilp32d
-make
+# 3. Configure and build
+./configure --prefix=/home/$USER/riscv --with-arch=rv32imafdcbk --with-abi=ilp32d
+make -j$(nproc)
 ```
 
 ##### Ubuntu:
 
 ```sh
+# 1. Install dependencies
+sudo apt update
+sudo apt install -y \
+  autoconf automake autotools-dev curl python3 python3-pip \
+  libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex \
+  texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev git \
+  ninja-build cmake libglib2.0-dev slirp4netns
+
+# 2. Clone `riscv-gnu-toolchain`
 cd ~
 git clone https://github.com/riscv/riscv-gnu-toolchain
 cd riscv-gnu-toolchain
 
-./configure --prefix=/home/$USER/riscv-gnu-toolchain/riscv \
-  --with-arch=rv32imac_zicsr --with-abi=ilp32
-
+# 3. Configure and build
+./configure --prefix=/home/$USER/riscv --with-arch=rv32imafdcbk --with-abi=ilp32d
 make -j$(nproc)
 ```
 
-### Set up environment variables (add to `~/.zshrc` or `~/.bashrc`):
+### Set up environment variables (add to `~/.bashrc` or `~/.zshrc`):
 
 ```sh
-echo 'export PATH="$HOME/riscv-gnu-toolchain/riscv/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
+echo 'export PATH="$HOME/riscv-gnu-toolchain/riscv/bin:$PATH"' >> ~/.bashrc  # or ~/.zshrc if using zsh
+source ~/.bashrc
 ```
 
 ### Test it:
