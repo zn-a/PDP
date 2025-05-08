@@ -297,6 +297,7 @@ source ~/.bashrc     # or ~/.zshrc if using zsh
 Download `riscv-tools.tar.gz` and extract it into your home directory:
 
 ```sh
+cp riscv-tools.tar.gz ~  
 cd ~
 tar -xzf riscv-tools.tar.gz
 ```
@@ -342,6 +343,13 @@ Run example:
 ```sh
 cd pdp-project-05/software
 make soft
+```
+
+You should get:
+
+```sh
+python3 python_script/srec_to_coe.py   output/soft.srec -b 0x8000 -s 0x8000 -f -o bin_files/code.coe
+python3 python_script/srec_to_coe.py   output/soft.srec -b 0x100000 -s 0x8000 -f -o bin_files/data.coe
 ```
 
 #### Option 2: Build from source (doesn't work):
