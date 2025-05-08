@@ -222,7 +222,7 @@ cp ~/course/llvm ~/llvm
 
 Once copied, make sure to update the configuration file `pdp-project/software/config/rv32-standard.conf` to point to your specific install of llvm (update path assigned to variables `RISCV_GCC` and `LLVM`).
 
-## Run locally (Fedora)
+## Run locally
 
 If you want to run stuff locally you can clone this repo and install the tools used by it as explained below, we recommend the use of the server, but a local setup might be nice for some users.
 
